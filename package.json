@@ -1,0 +1,25 @@
+{
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "jsdoc": "^3.5.5",
+    "modernizr": "^3.6.0",
+    "path": "^0.12.7",
+    "shelljs": "^0.8.1",
+    "stream-combiner2": "^1.1.1"
+  },
+  "name": "Modernizr-test-current-browser",
+  "version": "0.0.1",
+  "description": "Shows a table about supported features of Modernizr in the current web browser.",
+  "main": "index.html",
+  "author": {
+    "name": "R.J. Vrijhof",
+    "email": "<r@vrijhof.info>",
+    "url": "https://www.vrijhof.info/"
+  },
+  "license": "MIT"
+}

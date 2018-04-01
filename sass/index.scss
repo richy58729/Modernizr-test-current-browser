@@ -1,0 +1,28 @@
+@import 'partials/normalize';
+@import 'bourbon/bourbon';
+@import 'base/base';
+@import 'neat/neat';
+@import 'partials/variables';
+
+body {
+  padding-left: 2ex;
+  width: 95%;
+}
+
+h1 {
+  font-size: 28pt;
+  margin-top: 1ex;
+  text-align: center;
+}
+
+.supported {
+  color: $supported;
+}
+
+.not-supported {
+  color: $not-supported;
+}
+
+.unknown {
+  color: $unknown;
+}

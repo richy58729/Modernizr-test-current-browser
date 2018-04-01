@@ -1,0 +1,7 @@
+<FilesMatch '\.(json|log|lock)$'>
+  Require all denied
+</FilesMatch>
+
+<Files gulpfile.js>
+  Require all denied
+</Files>
