@@ -13,7 +13,7 @@ var uglify   = require('gulp-uglify');
 const CSS    = 'css';
 const JSDEST = 'js';
 const JSSRC  = 'src/*.js';
-const MD     = 'src/*.md';
+const MD     = ['*.md', 'src/*.md'];
 const PHP    = 'proxy/proxy.php';
 const SASS   = 'sass/**/*.scss';
 
@@ -67,8 +67,39 @@ function compareModernizrVersions(runFromWatcherTask = false) {
         '\'src/modernizr.js\' in order for this function to work correctly!'
       );
     }
+    var readmeContent = fs.readFileSync('README.md', 'utf8');
+    // Get the version of Modernizr in 'README.md'.
+    var readmeMatches = /(Currently uses \[Modernizr\]\(https:\/\/modernizr\.com\) v)(\d+\.\d+\.\d+)/.exec(
+      readmeContent
+    );
+    if (readmeMatches !== null) {
+      if (lockMatches[1] === readmeMatches[2]) {
+        console.log(
+          'Function \'compareModernizrVersions\': Versions in \'yarn.lock\' and \'README.md\' are the same.'
+        );
+      } else {
+        console.log(
+          'Function \'compareModernizrVersions\': Version in \'yarn.lock\' is "' + lockMatches[1] + '". Version in ' +
+          '\'README.md\' is "' + readmeMatches[2] + '". Updating \'README.md\'...'
+        );
+        readmeContent = readmeContent.replace(readmeMatches[0], readmeMatches[1] + lockMatches[1]);
+        fs.writeFileSync('README.md', readmeContent, 'utf8');
+        if (! runFromWatcherTask) {
+          console.log('Function \'compareModernizrVersions\': compiling JSDoc...');
+          // If this function has been called from the watcher task (not the compare task), it will detect the change to
+          // 'README.md' and compile JSDoc automatically, so the next step isn't necessary in that case.
+          compileJsdoc();
+        }
+      }
+    } else {
+      // No matches? Damn, you must have broken stuff! Now fix it!
+      console.error(
+        'ERROR (function \'compareModernizrVersions\'): The text "Currently uses [Modernizr](https://modernizr.com) ' +
+        'vX.X.X" needs to be present in \'README.md\' in order for this function to work correctly!'
+      );
+    }
     var readmeContent = fs.readFileSync('src/README.md', 'utf8');
-    // Get the version of Modernizr in '/src/README.md'.
+    // Get the version of Modernizr in 'src/README.md'.
     var readmeMatches = /(Currently uses \[Modernizr\]\(https:\/\/modernizr\.com\) v)(\d+\.\d+\.\d+)/.exec(
       readmeContent
     );
@@ -165,9 +196,9 @@ function compilePhpdoc(runFromActionTask = false) {
 //                                                    Action tasks                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Compare versions of Modernizr in 'yarn.lock', 'src/modernizr.js' and 'src/README.md'. Run this task for all certainty
-// because changes in 'yarn.lock' could have gone unnoticed (if gulp wasn't running when 'yarn.lock' was changed), so
-// just compare these files once when running gulp.
+// Compare versions of Modernizr in 'yarn.lock', 'README.md', 'src/modernizr.js' and 'src/README.md'. Run this task for
+// all certainty because changes in 'yarn.lock' could have gone unnoticed (if gulp wasn't running when 'yarn.lock' was
+// changed), so just compare these files once when running gulp.
 gulp.task('compare-Modernizr-versions', function() {
   compareModernizrVersions();
 });
