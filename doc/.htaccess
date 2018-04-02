@@ -1,1 +1,14 @@
 Options +Indexes
+HeaderName header.html
+IndexIgnore .. footer.html header.html index.css
+IndexOptions FancyIndexing
+IndexOptions HTMLTable
+IndexOptions IgnoreCase
+IndexOptions SuppressDescription
+IndexOptions SuppressHTMLPreamble
+IndexOptions SuppressIcon
+IndexOptions SuppressLastModified
+IndexOptions SuppressRules
+IndexOptions SuppressSize
+IndexStyleSheet index.css
+ReadmeName footer.html

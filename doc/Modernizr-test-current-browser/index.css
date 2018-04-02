@@ -1,0 +1,23 @@
+body {
+  font-family: consolas, "lucida sans", "luxi sans", verdana, "ms verdana", arial, helvetica, sans-serif;
+}
+h1 {
+  font-size: 28pt;
+  text-align: center;
+}
+table {
+  margin: auto;
+}
+td {
+  font-size: 14pt;
+  line-height: 1.6em;
+}
+th {
+  font-size: 18pt;
+}
+.even {
+  background-color: #EEE;
+}
+.odd {
+  background-color: #DDD;
+}
