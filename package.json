@@ -13,7 +13,7 @@
     "stream-combiner2": "^1.1.1"
   },
   "name": "Modernizr-test-current-browser",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Shows a table about supported features of Modernizr in the current web browser.",
   "main": "index.html",
   "author": {
@@ -21,5 +21,25 @@
     "email": "<r@vrijhof.info>",
     "url": "https://www.vrijhof.info/"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "github:richy58729/Modernizr-test-current-browser",
+  "files": [
+    ".sass-cache/.htaccess",
+    "css/",
+    "doc/",
+    "js/",
+    "proxy/",
+    "sass/",
+    "src/",
+    "vendor/.htaccess",
+    ".gitignore",
+    ".htaccess",
+    "composer.json",
+    "composer.lock",
+    "gulpfile.js",
+    "index.html",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "index.html"
 }
