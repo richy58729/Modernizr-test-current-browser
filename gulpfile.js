@@ -165,8 +165,9 @@ function compilePhpdoc(runFromActionTask = false) {
 //                                                    Action tasks                                                    //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Compare versions of Modernizr in 'yarn.lock' and 'src/README.md'. Run this task for all certainty because changes in
-// 'yarn.lock' could have gone unnoticed, so just compare these two files once when running gulp.
+// Compare versions of Modernizr in 'yarn.lock', 'src/modernizr.js' and 'src/README.md'. Run this task for all certainty
+// because changes in 'yarn.lock' could have gone unnoticed (if gulp wasn't running when 'yarn.lock' was changed), so
+// just compare these files once when running gulp.
 gulp.task('compare-Modernizr-versions', function() {
   compareModernizrVersions();
 });
@@ -247,7 +248,7 @@ gulp.task('watch-php', function() {
   changeWatcher(watcher, 'watch-php');
 });
 
-// Watch SASS.
+// Watch SASS (mind you, this is the constant called 'SASS'! See also http://sassnotsass.com).
 gulp.task('watch-sass', function() {
   var watcher = gulp.watch(SASS, ['sass']);
   changeWatcher(watcher, 'watch-sass');
