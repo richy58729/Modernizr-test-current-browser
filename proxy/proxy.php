@@ -13,7 +13,7 @@
  *
  * @author R.J.Vrijhof <r@vrijhof.info>
  * @license https://opensource.org/licenses/MIT MIT
- * @package Modernizr-test
+ * @package Modernizr-test-current-browser
  */
 
 // If HTTP_REFERER exists, check if it is one directory up, ending with either a slash or a slash and 'index.html'. Also
