@@ -1,3 +1,8 @@
+Author: [R.J. Vrijhof](https://www.vrijhof.info) <<r@vrijhof.info>><br/>
+License: [MIT](https://opensource.org/licenses/MIT)
+
+#### Usage ####
+
 This module shows a table with all the features [Modernizr](https://modernizr.com) provides where each cell indicates
 if the current browser supports the feature or not.
 
@@ -9,18 +14,27 @@ Currently uses [Modernizr](https://modernizr.com) v3.6.0.<br/>
 Uses [DataTables](https://www.datatables.net) for formatting the features in a handy table with search capability and
 pagination.
 
-Author: [R.J. Vrijhof](https://www.vrijhof.info) <<r@vrijhof.info>><br/>
-License: [MIT](https://opensource.org/licenses/MIT)
+Set up to work on Apache. Could easily work in other web servers as well, however, some folders/files will be accessible
+from the web browser, because they have been protected with .htaccess files that only work in Apache. There should be no
+harm done, as there's not really sensitive information in those folders/files.
+
+You'll need PHP as well.
+
+#### Development ####
 
 If you're further developing this module, you'll need:
 - [Yarn](https://yarnpkg.com), to get Modernizr, JSDoc, gulp and the dependencies 'gulpfile.js' needs (NPM could work
   too, but you'll have to change 'gulpfile.js' so it watches 'package-lock.json' instead of 'yarn.lock' in the
-  'watch-yarn.lock' task, unless you don't care about gulp and want to do stuff by hand)
-- [gulp](https://gulpjs.com)
-- [Composer](https://getcomposer.org), to get phpDocumentor (or get phpDocumentor by hand instead); installed globally
-  by the way
-- [JSDoc](https://github.com/jsdoc3/jsdoc)
-- [phpDocumentor](https://phpdoc.org), installed by means of Composer
+  'watch-yarn.lock' task, unless you don't care about gulp and want to do stuff by hand).
+- [gulp](https://gulpjs.com), for automating building, compiling, etc.
+- [Composer](https://getcomposer.org), to get phpDocumentor (or get phpDocumentor by hand instead).
+- [JSDoc](https://github.com/jsdoc3/jsdoc), to make the development documentation's welcome page and for documenting
+  JavaScript.
+- [phpDocumentor](https://phpdoc.org), for documenting PHP (there's a simple PHP script that's used as a proxy to
+  retrieve the [Modernizr Documentation](https://modernizr.com/docs)).
+
+Start gulp and keep it running. It watches several files for changes and automatically builds and compiles stuff, and
+such.
 
 <hr style="border-bottom-color: #000; border-bottom-width: 1px; margin-left: 1em; margin-right: auto; width: 80em" />
 
