@@ -1,6 +1,6 @@
 /.sass-cache/
 /node_modules/
 /vendor/
-!/.sass-cache/.htaccess
-!/node_modules/.htaccess
-!/vendor/.htaccess
+! /.sass-cache/.htaccess
+! /node_modules/.htaccess
+! /vendor/.htaccess
