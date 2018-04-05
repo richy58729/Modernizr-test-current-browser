@@ -13,7 +13,7 @@
     "stream-combiner2": "^1.1.1"
   },
   "name": "Modernizr-test-current-browser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Shows a table about supported features of Modernizr in the current web browser.",
   "main": "index.html",
   "author": {

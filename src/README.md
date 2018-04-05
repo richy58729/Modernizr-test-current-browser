@@ -23,15 +23,15 @@ You'll need PHP as well.
 #### Development ####
 
 If you're further developing this module, you'll need:
-- [Yarn](https://yarnpkg.com), to get Modernizr, JSDoc, gulp and the dependencies 'gulpfile.js' needs (NPM could work
-  too, but you'll have to change 'gulpfile.js' so it watches 'package-lock.json' instead of 'yarn.lock' in the
-  'watch-yarn.lock' task, unless you don't care about gulp and want to do stuff by hand).
-- [gulp](https://gulpjs.com), for automating building, compiling, etc.
 - [Composer](https://getcomposer.org), to get phpDocumentor (or get phpDocumentor by hand instead).
+- [gulp](https://gulpjs.com), for automating building, compiling, etc.
 - [JSDoc](https://github.com/jsdoc3/jsdoc), to make the development documentation's welcome page and for documenting
   JavaScript.
 - [phpDocumentor](https://phpdoc.org), for documenting PHP (there's a simple PHP script that's used as a proxy to
   retrieve the [Modernizr Documentation](https://modernizr.com/docs)).
+- [Yarn](https://yarnpkg.com), to get Modernizr, JSDoc, gulp and the dependencies 'gulpfile.js' needs (NPM could work
+  too, but you'll have to change 'gulpfile.js' so it watches 'package-lock.json' instead of 'yarn.lock' in the
+  'watch-yarn.lock' task, unless you don't care about gulp and want to do stuff by hand).
 
 Start gulp and keep it running. It watches several files for changes and automatically builds and compiles stuff, and
 such.
@@ -41,4 +41,4 @@ such.
 - [Jump to source code of index.js, the workhorse of this module](index.js.html)
 - [Jump to documentation of proxy.php, which is used by index.js to retrieve the Modernizr Documentation web
   page](files/proxy.html)
-- [Jump to module home](../../..)
+- [Jump to module home](../..)
