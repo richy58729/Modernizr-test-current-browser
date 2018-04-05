@@ -140,8 +140,22 @@ function compileJsdoc(runFromActionTask = false) {
   // Move the generated JSDoc to the parent folder as the extra folder with the name of the module has no added value in
   // my opinion and only requires an extra click when one wants to view the documentation.
   var json = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+  if (fs.existsSync('docs/' + json.version)) {
+    del.sync('docs/' + json.version);
+  }
   fs.renameSync('docs/' + json.name + '/' + json.version, 'docs/' + json.version);
   fs.rmdirSync('docs/' + json.name);
+  // Construct the file index.html.
+  var content = fs.readFileSync('src/index.html.header.tmpl', 'utf8').replace('MODULE', json.name);
+  var items = fs.readdirSync('docs');
+  for (var index = 0; index < items.length; index++) {
+    if (/^[\d.]+$/.test(items[index])) {
+      content += fs.readFileSync('src/index.html.li.tmpl', 'utf8').replace(/VERSION/g, items[index]);
+    }
+  }
+  content += fs.readFileSync('src/index.html.footer.tmpl', 'utf8');
+  // Finally write the file index.html.
+  fs.writeFileSync('docs/index.html', content, {mode: 0o664});
   if (! runFromActionTask) {
     console.log('Done compiling JSDoc.');
   }
