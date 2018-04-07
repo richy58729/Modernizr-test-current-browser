@@ -289,11 +289,8 @@ gulp.task('watch-mdsrc', function() {
 gulp.task('watch-package.json', function() {
   var watcher = gulp.watch('package.json', function() {
     var json = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-    // If the version has changed, then documentation for that specific version must be generated.
-    if (! fs.existsSync('docs/' + json.version)) {
-      compileJsdoc();
-      compilePhpdoc();
-    }
+    compileJsdoc();
+    compilePhpdoc();
   });
   changeWatcher(watcher, 'watch-package.json');
 });
