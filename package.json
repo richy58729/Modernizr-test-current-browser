@@ -9,7 +9,6 @@
     "jsdoc": "^3.5.5",
     "modernizr": "^3.6.0",
     "path": "^0.12.7",
-    "semver": "^5.5.0",
     "shelljs": "^0.8.1",
     "stream-combiner2": "^1.1.1"
   },
@@ -41,5 +40,6 @@
     "index.html",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "main": "index.html"
 }
