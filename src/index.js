@@ -34,6 +34,10 @@ for (var i = 0; i <= 4; i++) {
 }
 $('h1').html(h1);
 
+$.loader({
+  className: 'blue-with-image-2',
+  content: ''
+});
 // Wrap the code inside the success function of the GET proxy request, so its data is available to act upon. Downside is
 // that it takes a little longer before the table is shown, but otherwise the title attributes would have to be
 // manipulated afterwards, which would have been much harder to code. For me it only takes less than a second before the
@@ -104,4 +108,5 @@ $.get('proxy/', function(data) {
     'pageLength': 25,
     'responsive': true
   });
+  $.loader('close');
 });
