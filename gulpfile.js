@@ -162,6 +162,9 @@ function compileJsdoc(runFromActionTask = false) {
   content += fs.readFileSync('src/index.html.footer.tmpl', 'utf8');
   // Finally write the file index.html.
   fs.writeFileSync('docs/index.html', content, {mode: 0o664});
+  // Because ('docs/' + json.version) has been deleted earlier, the PHP documentation is deleted as well, so compile
+  // PHPDoc.
+  compilePhpdoc();
   if (! runFromActionTask) {
     console.log('Done compiling JSDoc.');
   }
@@ -289,8 +292,10 @@ gulp.task('watch-mdsrc', function() {
 gulp.task('watch-package.json', function() {
   var watcher = gulp.watch('package.json', function() {
     var json = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-    compileJsdoc();
-    compilePhpdoc();
+    if (! fs.existsSync('docs/' + json.version)) {
+      compileJsdoc();
+      compilePhpdoc();
+    }
   });
   changeWatcher(watcher, 'watch-package.json');
 });
@@ -311,6 +316,7 @@ gulp.task('watch-sass', function() {
 gulp.task('watch-yarn.lock', function() {
   var watcher = gulp.watch('yarn.lock', function() {
     compareModernizrVersions(true);
+    fs.writeFileSync('node_modules/.htaccess', 'Require all denied', 'utf8');
   });
   changeWatcher(watcher, 'watch-yarn.lock');
 });

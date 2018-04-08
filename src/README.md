@@ -33,8 +33,10 @@ If you're further developing this module, you'll need:
   too, but you'll have to change 'gulpfile.js' so it watches 'package-lock.json' instead of 'yarn.lock' in the
   'watch-yarn.lock' task, unless you don't care about gulp and want to do stuff by hand).
 
-Start gulp and keep it running. It watches several files for changes and automatically builds and compiles stuff, and
-such.
+
+1. Run yarn. It will fetch all modules and dependencies present in 'package.json'.
+2. Start gulp and keep it running. It watches several files for changes and automatically builds and compiles stuff, and
+   such.
 
 <hr style="border-bottom-color: #000; border-bottom-width: 1px; margin-left: 1em; margin-right: auto; width: 80em" />
 
