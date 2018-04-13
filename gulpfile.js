@@ -146,7 +146,7 @@ function compileJsdoc(runFromActionTask = false) {
   }
   fs.renameSync('docs/' + json.name + '/' + json.version, 'docs/' + json.version);
   fs.rmdirSync('docs/' + json.name);
-  // Construct the file index.html.
+  // Construct the file 'docs/index.html'.
   var versions = [];
   var content = fs.readFileSync('src/index.html.header.tmpl', 'utf8').replace('MODULE', json.name);
   var items = fs.readdirSync('docs');
@@ -177,46 +177,48 @@ function compilePhpdoc(runFromActionTask = false) {
     console.log('JSDoc is the lion\'s share of the documentation.');
     console.log('PHPDoc facilitates only some additional, supporting documentation.');
     compileJsdoc();
-  }
-  // Compile PHPDoc by means of phpDocumentor.
-  shell.exec(
-    'vendor/bin/phpdoc --filename=proxy/proxy.php --target=temp --template=new-black --title=' + json.name +
-    ' >/dev/null'
-  );
-  // Highlight the source code by means of the PHP function higlight_file.
-  shell.exec(
-    'php -r "file_put_contents(\'temp/source/proxy.php.html\', highlight_file(\'proxy/proxy.php\', true));" >/dev/null'
-  );
-  // Make sure the folder 'source' exists in the documentation, so the steps later on succeed.
-  if (! fs.existsSync('docs/' + json.version + '/source')) {
-    fs.mkdirSync('docs/' + json.version + '/source', 0o775);
-  }
-  // Construct the source code highlighter file.
-  fs.copyFileSync('src/proxy.php.html.header.tmpl', 'docs/' + json.version + '/source/proxy.php.html');
-  fs.appendFileSync(
-    'docs/' + json.version + '/source/proxy.php.html',
-    fs.readFileSync('temp/source/proxy.php.html', 'utf8')
-  );
-  fs.appendFileSync(
-    'docs/' + json.version + '/source/proxy.php.html',
-    fs.readFileSync('src/proxy.php.html.footer.tmpl')
-  );
-  // Make sure the folder 'files' exists in the documentation, so the steps later on succeed.
-  if (! fs.existsSync('docs/' + json.version + '/files')) {
-    fs.mkdirSync('docs/' + json.version + '/files', 0o775);
-  }
-  // Cherry pick only the folders/files needed for the documentation.
-  fs.renameSync('temp/files/proxy.html', 'docs/' + json.version + '/files/proxy.html');
-  del.sync('docs/' + json.version + '/css');
-  fs.renameSync('temp/css/', 'docs/' + json.version + '/css/');
-  del.sync('docs/' + json.version + '/images');
-  fs.renameSync('temp/images/', 'docs/' + json.version + '/images/');
-  del.sync('docs/' + json.version + '/js');
-  fs.renameSync('temp/js/', 'docs/' + json.version + '/js/');
-  // Get rid of the folder 'temp' which has served its purpose.
-  del.sync('temp/');
-  if (! runFromActionTask) {
-    console.log('Done compiling PHPDoc.');
+  // Because compileJsdoc() will also call compilePhpdoc(), this else clause prevents running compilePhpdoc twice.
+  } else {
+    // Compile PHPDoc by means of phpDocumentor.
+    shell.exec(
+      'vendor/bin/phpdoc --filename=proxy/proxy.php --target=temp --template=new-black --title=' + json.name +
+      ' >/dev/null'
+    );
+    // Highlight the source code by means of the PHP function higlight_file.
+    shell.exec(
+      'php -r "file_put_contents(\'temp/source/proxy.php.html\', highlight_file(\'proxy/proxy.php\', true));" >/dev/null'
+    );
+    // Make sure the folder 'source' exists in the documentation, so the steps later on succeed.
+    if (! fs.existsSync('docs/' + json.version + '/source')) {
+      fs.mkdirSync('docs/' + json.version + '/source', 0o775);
+    }
+    // Construct the source code highlighter file.
+    fs.copyFileSync('src/proxy.php.html.header.tmpl', 'docs/' + json.version + '/source/proxy.php.html');
+    fs.appendFileSync(
+      'docs/' + json.version + '/source/proxy.php.html',
+      fs.readFileSync('temp/source/proxy.php.html', 'utf8')
+    );
+    fs.appendFileSync(
+      'docs/' + json.version + '/source/proxy.php.html',
+      fs.readFileSync('src/proxy.php.html.footer.tmpl')
+    );
+    // Make sure the folder 'files' exists in the documentation, so the steps later on succeed.
+    if (! fs.existsSync('docs/' + json.version + '/files')) {
+      fs.mkdirSync('docs/' + json.version + '/files', 0o775);
+    }
+    // Cherry pick only the folders/files needed for the documentation.
+    fs.renameSync('temp/files/proxy.html', 'docs/' + json.version + '/files/proxy.html');
+    del.sync('docs/' + json.version + '/css');
+    fs.renameSync('temp/css/', 'docs/' + json.version + '/css/');
+    del.sync('docs/' + json.version + '/images');
+    fs.renameSync('temp/images/', 'docs/' + json.version + '/images/');
+    del.sync('docs/' + json.version + '/js');
+    fs.renameSync('temp/js/', 'docs/' + json.version + '/js/');
+    // Get rid of the folder 'temp' which has served its purpose.
+    del.sync('temp/');
+    if (! runFromActionTask) {
+      console.log('Done compiling PHPDoc.');
+    }
   }
 } // function compilePhpdoc
 
@@ -294,7 +296,6 @@ gulp.task('watch-package.json', function() {
     var json = JSON.parse(fs.readFileSync('package.json', 'utf8'));
     if (! fs.existsSync('docs/' + json.version)) {
       compileJsdoc();
-      compilePhpdoc();
     }
   });
   changeWatcher(watcher, 'watch-package.json');

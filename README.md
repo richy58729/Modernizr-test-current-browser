@@ -6,12 +6,21 @@ This module shows a table with all the features [Modernizr](https://modernizr.co
 if the current browser supports the feature or not.
 
 If documentation about the feature could be distilled from the [Modernizr Documentation](https://modernizr.com/docs), it
-will be shown when hovering the mouse cursor over the table row of the feature. This doesn't work 100% flawlessly, but
-most of the time I think it's quite handy despite this.
+will be shown when hovering the mouse cursor over (or tapping on touchscreens) the table row of the feature. This
+doesn't work 100% flawlessly, but most of the time I think it's quite handy despite this.
 
-Currently uses [Modernizr](https://modernizr.com) v3.6.0.<br/>
-Uses [DataTables](https://www.datatables.net) for formatting the features in a handy table with search capability and
-pagination.
+- Currently uses [Modernizr](https://modernizr.com) v3.6.0.
+- Uses [Bitters](https://bitters.bourbon.io).
+- Uses [Bourbon](https://www.bourbon.io).
+- Uses [DataTables](https://www.datatables.net) for formatting the features in a handy table with search capability and
+  pagination.
+- Uses [jQuery](https://jquery.com).
+- Uses the [jQuery Loader plugin](https://plugins.jquery.com/loader).
+- Uses the [jQuery miniTip plugin](https://plugins.jquery.com/miniTip).
+- Uses the [jQuery Touchable plugin](https://github.com/dotmaster/Touchable-jQuery-Plugin).
+- Uses [Neat](https://neat.bourbon.io).
+- Uses [normalize-scss](https://github.com/JohnAlbin/normalize-scss).
+- Uses [Sass](https://sass-lang.com) (yes, it's really written as [Sass, not SASS](http://sassnotsass.com)).
 
 Set up to work on Apache. Could easily work in other web servers as well, however, some folders/files will be accessible
 from the web browser, because they have been protected with .htaccess files that only work in Apache. There should be no

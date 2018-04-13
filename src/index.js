@@ -25,6 +25,11 @@ var title = '';
  */
 var support;
 /**
+ * Object for the Touchable jQuery plugin.
+ * @type {Object}
+ */
+var touch;
+/**
  * Text for the H1 tag.
  * @type {String}
  */
@@ -34,6 +39,7 @@ for (var i = 0; i <= 4; i++) {
 }
 $('h1').html(h1);
 
+// Initialize the Loader jQuery plugin.
 $.loader({
   className: 'blue-with-image-2',
   content: ''
@@ -65,9 +71,9 @@ $.get('proxy/', function(data) {
           // Generate another row for the feature table.
           if (title != undefined) {
             $('#table > tbody').append(
-              '<tr title="' + title + '"><td><span class="' + support + '">' + item + '.' + subItem +
-              '</span></td><td><span class="' + support + '">' + Modernizr[item][subItem].toString() +
-              '</span></td></tr>'
+              '<tr class="touch" title="' + title.replace('<', '[').replace('>', ']') + '"><td><span class="' +
+              support + '">' + item + '.' + subItem + '</span></td><td><span class="' + support + '">' +
+              Modernizr[item][subItem].toString() + '</span></td></tr>'
             );
           } else {
             // Sometimes the documentation of the current feature could not be found, so in that case leave out the
@@ -88,8 +94,9 @@ $.get('proxy/', function(data) {
         // Generate another row for the feature table.
         if (title != undefined) {
           $('#table > tbody').append(
-            '<tr title="' + title + '"><td><span class="' + support + '">' + item + '</span></td><td><span class="' +
-            support + '">' + Modernizr[item].toString() + '</span></td></tr>'
+            '<tr class="touch" title="' + title.replace('<', '[').replace('>', ']') + '"><td><span class="' + support +
+            '">' + item + '</span></td><td><span class="' + support + '">' + Modernizr[item].toString() +
+            '</span></td></tr>'
           );
         } else {
           // Sometimes the documentation of the current feature could not be found, so in that case leave out the title
@@ -102,11 +109,21 @@ $.get('proxy/', function(data) {
       }
     }
   }
+  // Initialize the miniTip jQuery plugin.
+  $('.touch').miniTip();
   // Make the table really cool by means of DataTables (paging, searching and eye candy, among other things).
   $('#table').DataTable({
     'order'     : [[0, "asc"]],
     'pageLength': 25,
     'responsive': true
   });
+  // Initialize the Touchable jQuery plugin.
+  touch = $('.touch').Touchable();
+  // Bind tapping.
+  touch.bind('tap', function(e, touch) {
+    // Amazingly, just filling the object with an ID of 'miniTip_c' makes miniTip work together with Touchable!
+    $('miniTip_c').html($(e.target).attr('title'));
+  });
+  // Everything done, so close the Loader plugin.
   $.loader('close');
 });
