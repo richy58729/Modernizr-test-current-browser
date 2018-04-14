@@ -14,7 +14,7 @@ var uglify   = require('gulp-uglify');
 const CSS    = 'css';
 const JSDEST = 'js';
 const JSSRC  = 'src/*.js';
-const MD     = ['*.md', 'src/*.md'];
+const MD     = 'src/*.md';
 const PHP    = 'proxy/proxy.php';
 const SASS   = 'sass/**/*.scss';
 
