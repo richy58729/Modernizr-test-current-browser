@@ -43,7 +43,9 @@ If you're further developing this module, you'll need:
 
 
 1. Run yarn. It will fetch all modules and dependencies present in 'package.json'.
-2. Start gulp and keep it running. It watches several files for changes and automatically builds and compiles stuff, and
+2. Run 'composer install' (or 'php composer.phar install' if you haven't installed Composer globally). It will fetch all
+   packages and dependencies present in 'composer.json'. Alternatively, you can get phpDocumentor manually.
+3. Start gulp and keep it running. It watches several files for changes and automatically builds and compiles stuff, and
    such.
 
 You can find the development documentation also on
