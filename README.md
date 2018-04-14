@@ -45,3 +45,6 @@ If you're further developing this module, you'll need:
 1. Run yarn. It will fetch all modules and dependencies present in 'package.json'.
 2. Start gulp and keep it running. It watches several files for changes and automatically builds and compiles stuff, and
    such.
+
+You can find the development documentation also on
+[GitHub Pages](https://richy58729.github.io/Modernizr-test-current-browser).
