@@ -14,6 +14,7 @@ doesn't work 100% flawlessly, but most of the time I think it's quite handy desp
 - Uses [Bourbon](https://www.bourbon.io).
 - Uses [DataTables](https://www.datatables.net) for formatting the features in a handy table with search capability and
   pagination.
+- Uses [Handlebars.js](https://handlebarsjs.com).
 - Uses [jQuery](https://jquery.com).
 - Uses the [jQuery Loader plugin](https://plugins.jquery.com/loader).
 - Uses the [jQuery miniTip plugin](https://plugins.jquery.com/miniTip).
