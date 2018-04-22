@@ -1,15 +1,16 @@
 'use strict';
 
-var combiner = require('stream-combiner2');
-var del      = require('del');
-var fs       = require('fs');
-var gulp     = require('gulp');
-var path     = require('path');
-var rename   = require('gulp-rename');
-var sass     = require('gulp-sass');
-var semver   = require('semver');
-var shell    = require('shelljs');
-var uglify   = require('gulp-uglify');
+var combiner   = require('stream-combiner2');
+var del        = require('del');
+var fs         = require('fs');
+var gulp       = require('gulp');
+var handlebars = require('handlebars');
+var path       = require('path');
+var rename     = require('gulp-rename');
+var sass       = require('gulp-sass');
+var semver     = require('semver');
+var shell      = require('shelljs');
+var uglify     = require('gulp-uglify');
 
 const CSS    = 'css';
 const JSDEST = 'js';
@@ -147,21 +148,20 @@ function compileJsdoc(runFromActionTask = false) {
   fs.renameSync('docs/' + json.name + '/' + json.version, 'docs/' + json.version);
   fs.rmdirSync('docs/' + json.name);
   // Construct the file 'docs/index.html'.
-  var versions = [];
-  var content = fs.readFileSync('src/index.html.header.tmpl', 'utf8').replace('MODULE', json.name);
+  var context = {
+    module: json.name,
+    versions: []
+  }
   var items = fs.readdirSync('docs');
   for (var index = 0; index < items.length; index++) {
     if (/^[\d.]+$/.test(items[index])) {
-      versions[index] = items[index];
+      context.versions[index] = items[index];
     }
   }
-  versions = versions.sort(semver.compare);
-  for (var index = 0; index < versions.length; index++) {
-    content += fs.readFileSync('src/index.html.li.tmpl', 'utf8').replace(/VERSION/g, versions[index]);
-  }
-  content += fs.readFileSync('src/index.html.footer.tmpl', 'utf8');
-  // Finally write the file index.html.
-  fs.writeFileSync('docs/index.html', content, {mode: 0o664});
+  context.versions = context.versions.sort(semver.compare);
+  var template = handlebars.compile(fs.readFileSync('src/index.hbs', 'utf8'));
+  // Finally write the file 'docs/index.html'.
+  fs.writeFileSync('docs/index.html', template(context), {mode: 0o664});
   // Because ('docs/' + json.version) has been deleted earlier, the PHP documentation is deleted as well, so compile
   // PHPDoc.
   compilePhpdoc();

@@ -3,10 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MODULE Documentation</title>
+    <title>{{module}} Documentation</title>
   </head>
   <body style="font-family: 'Open Sans', sans-serif; font-size: 14px">
     <h1 style="font-family: 'Open Sans Light', sans-serif; font-size: 40px; text-align: center">Versions</h1>
 
     <div style="text-align: center">Pick your version:</div>
     <ul style="text-align: center">
+      {{#each versions}}
+      <li><a href="{{this}}/">{{this}}</a></li>
+      {{/each}}
+    </ul>
+  </body>
+</html>

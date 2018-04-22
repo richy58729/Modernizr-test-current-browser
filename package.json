@@ -6,6 +6,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
+    "handlebars": "^4.0.11",
     "jsdoc": "^3.5.5",
     "modernizr": "^3.6.0",
     "path": "^0.12.7",
@@ -13,7 +14,7 @@
     "stream-combiner2": "^1.1.1"
   },
   "name": "Modernizr-test-current-browser",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Shows a table about supported features of Modernizr in the current web browser.",
   "main": "index.html",
   "author": {
