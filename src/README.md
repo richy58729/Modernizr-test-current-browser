@@ -10,7 +10,7 @@ If documentation about the feature could be distilled from the [Modernizr Docume
 will be shown when hovering the mouse cursor over (or tapping on touchscreens) the table row of the feature. This
 doesn't work 100% flawlessly, but most of the time I think it's quite handy despite this.
 
-- Currently uses [Modernizr](https://modernizr.com) v3.6.0.
+- Currently uses [Modernizr](https://modernizr.com) v3.7.1.
 - Uses [Bitters](https://bitters.bourbon.io).
 - Uses [Bourbon](https://www.bourbon.io).
 - Uses [DataTables](https://www.datatables.net) for formatting the features in a handy table with search capability and
